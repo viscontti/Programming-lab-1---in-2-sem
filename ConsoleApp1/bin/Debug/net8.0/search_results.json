@@ -1,0 +1,17 @@
+[
+  {
+    "Brand": "Apple",
+    "OS": "IOS",
+    "Color": "Black"
+  },
+  {
+    "Brand": "Android",
+    "OS": "ANDROID",
+    "Color": "White"
+  },
+  {
+    "Brand": "Google",
+    "OS": "ANDROID",
+    "Color": "Blue"
+  }
+]
