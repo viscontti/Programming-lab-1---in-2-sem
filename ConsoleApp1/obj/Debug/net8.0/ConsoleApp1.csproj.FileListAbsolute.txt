@@ -15,3 +15,4 @@
 /Users/viscontti/Documents/GitHub/Programming-lab-1---in-2-sem/ConsoleApp1/obj/Debug/net8.0/ConsoleApp1.csproj.AssemblyReference.cache
 /Users/viscontti/Documents/GitHub/Programming-lab-1---in-2-sem/ConsoleApp1/bin/Debug/net8.0/Newtonsoft.Json.dll
 /Users/viscontti/Documents/GitHub/Programming-lab-1---in-2-sem/ConsoleApp1/obj/Debug/net8.0/ConsoleA.CB28C8CC.Up2Date
+/Users/viscontti/Documents/GitHub/Programming-lab-1---in-2-sem/ConsoleApp1/obj/Debug/net8.0/ConsoleApp1.sourcelink.json

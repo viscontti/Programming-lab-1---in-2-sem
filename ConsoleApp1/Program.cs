@@ -46,7 +46,7 @@
 // using System.Collections.Generic;
 // using Newtonsoft.Json;
 // using System.IO;
-// class Progrsm 
+// class Progrаm 
 // {
 //     static void Main()
 //     {
@@ -82,19 +82,108 @@
 //     }
 // }
 //TASK 3
+// using System;
+// using System.Linq;
+// using System.Reflection.Metadata.Ecma335;
+// using System.Runtime.InteropServices;
+
+// class Program
+// {
+//     static void Main()
+//     {
+//         string[] input = { "british", "haribo", "bubble", "hoco", "barbados", "protein" };
+
+//         var finalResult = input
+//             .Select(s => s.Length % 2 == 1 ? s.First() : s.Last()) 
+//             .OrderByDescending(c => (int)c) 
+//             .ToList(); 
+//         Console.WriteLine(string.Join(", ", finalResult));
+//     }
+
+    
+// }
 using System;
-using System.Linq;
+using System.IO;
+using System.Text.Json;
+using System.Collections.Generic;
 
 class Program
 {
     static void Main()
     {
-        string[] input = { "british", "haribo", "bubble", "hoco", "barbados", "protein" };
+        string filePath = "worker.json";
+        
+        Worker mike = new Worker();
+        Worker lili = new Worker(1300, 15);
+        Worker jess = new Worker(1700, 19);
+        
+        mike.PRINTINGSALARY();
+        lili.PRINTINGSALARY();
+        jess.PRINTINGSALARY();
+        
+        mike.SAVETOJSON(filePath);
+        Console.WriteLine("SAVED IN JSON");
+        
+        
+        Console.WriteLine("LOADED FROM JSON:");
+        mike.LOADFROMJSON(filePath);
+    }
+}
 
-        var finalResult = input
-            .Select(s => s.Length % 2 == 1 ? s.First() : s.Last()) 
-            .OrderByDescending(c => (int)c) 
-            .ToList(); 
-        Console.WriteLine(string.Join(", ", finalResult));
+class Worker
+{
+    string name;
+    string surname;
+    int wage = 1000;
+    int workdays = 20;
+
+    public Worker()
+    {
+        name = "Mike";
+        surname = "Gilber";
+        wage = 1500;
+        workdays = 20;
+    }
+
+    public Worker(int wage, int workdays)
+    {
+        this.wage = wage;
+        this.workdays = workdays;
+    }
+
+    public void PRINTINGSALARY()
+    {
+        var count = this.wage * this.workdays;
+        Console.WriteLine($"salary = {count}");
+    }
+
+    public void SAVETOJSON(string filePath)
+    {
+        var workerData = new Dictionary<string, object>
+        {
+            { "name", this.name },
+            { "surname", this.surname },
+            { "wage", this.wage },
+            { "workdays", this.workdays }
+        };
+
+        string json = JsonSerializer.Serialize(workerData);
+        File.WriteAllText(filePath, json);
+    }
+
+    public void LOADFROMJSON(string filePath)
+    {
+   
+            string json = File.ReadAllText(filePath);
+            var workerData = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(json);
+
+                this.name = workerData["name"].GetString();
+                this.surname = workerData["surname"].GetString();
+                this.wage = workerData["wage"].GetInt32();
+                this.workdays = workerData["workdays"].GetInt32();
+
+                Console.WriteLine($"Name: {this.name}, Surname: {this.surname}, Wage: {this.wage}, Workdays: {this.workdays}");
+            
+        
     }
 }
